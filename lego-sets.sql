@@ -1,3 +1,11 @@
+/*
+
+Cleaning Data in mySQL Queries
+
+*/
+
+
+-- Remove Duplicates
 select *
 from lego_sets;
 
@@ -73,6 +81,8 @@ set
     thumbnailURL = trim(thumbnailURL),
     imageURL = trim(imageURL);
 
+
+-- Standardize the Data
 alter table lego_sets3
 rename column ï»¿set_id to set_id;
 
