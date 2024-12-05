@@ -120,6 +120,9 @@ drop column row_num;
 select *
 from lego_sets3;
 
+drop table lego_sets2;
+drop table lego_sets;
+
 
 
 
