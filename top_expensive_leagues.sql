@@ -43,7 +43,9 @@ UPDATE top_expensive_leagues
 SET `Revenue (USD)` = ROUND(`Revenue (USD)`, 2),
     `Average Player Salary (USD)` = ROUND(`Average Player Salary (USD)`, 2);
 
-
+-- Normalize country names (example for known inconsistencies)
+UPDATE top_expensive_leagues
+SET `Country` = 'USA' WHERE `Country` IN ('United States', 'U.S.', 'America');
 
 -- Step 3: Validate Numerical Columns
 UPDATE top_expensive_leagues
@@ -77,7 +79,12 @@ ON t1.`League Name` = t2.`League Name`
 select *
 from top_expensive_leagues;
 
-
+-- Step 4: Create a view for top-performing leagues
+CREATE VIEW top_leagues AS
+SELECT `League Name`, `Country`, `Sport`, `Revenue (USD)`, `Revenue per Team`, `Average Player Salary (USD)`, `Salary as % of Revenue`, `Revenue Rank`, `Viewership Rank`
+FROM top_expensive_leagues
+ORDER BY `Revenue (USD)` DESC
+LIMIT 10;
 
 
 
